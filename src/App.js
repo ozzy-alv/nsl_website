@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Box } from "@mui/material";
+import videoBg from "./assets/purp.mp4";
+import { Routes, Route } from "react-router-dom";
+import { Hero, About, Gallery, Contact, Product } from "./container";
+import { Navbar } from "./components";
+import "./styles/App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box className='main'>
+      <Box className='overlay' />
+      <video src={videoBg} autoPlay loop muted className='video' />
+
+      <Box className='main-content'>
+        <Box
+          className='navbar'
+          style={{ maxWidth: { sx: "auto", md: "1280px" } }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Navbar />
+        </Box>
+
+        <Box className='main-hero'>
+          <Routes>
+            <Route path='/' element={<Hero />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/product' element={<Product />} />
+            <Route path='/gallery' element={<Gallery />} />
+            <Route path='/contact' element={<Contact />} />
+          </Routes>
+        </Box>
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;
